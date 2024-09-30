@@ -1,0 +1,36 @@
+{
+	"name": "Pipeline_add_notebook",
+	"properties": {
+		"activities": [
+			{
+				"name": "Notebook1",
+				"type": "SynapseNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebook": {
+						"referenceName": "Mount configuration",
+						"type": "NotebookReference"
+					},
+					"snapshot": true,
+					"sparkPool": {
+						"referenceName": "Smallpool",
+						"type": "BigDataPoolReference"
+					},
+					"executorSize": "Small",
+					"driverSize": "Small"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-09-23T09:53:25Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

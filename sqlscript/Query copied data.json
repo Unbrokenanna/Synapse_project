@@ -1,0 +1,17 @@
+{
+	"name": "Query copied data",
+	"properties": {
+		"content": {
+			"query": "select * from dbo.Tablecopied",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "Deducated",
+				"poolName": "Deducated"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

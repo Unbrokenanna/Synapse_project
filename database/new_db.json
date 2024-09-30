@@ -1,0 +1,25 @@
+{
+	"name": "new_db",
+	"properties": {
+		"Name": "new_db",
+		"EntityType": "DATABASE",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"Properties": {
+			"IsSyMSCDMDatabase": true
+		},
+		"Source": {
+			"Provider": "ADLS",
+			"Location": "abfss://1109projectsynapse@1109projectsynapse.dfs.core.windows.net/new_db",
+			"Properties": {
+				"FormatType": "parquet",
+				"LinkedServiceName": "1109projectsynapse-WorkspaceDefaultStorage"
+			}
+		},
+		"PublishStatus": "PUBLISHED",
+		"ObjectVersion": 1,
+		"ObjectId": "7d23bd02-1429-4f09-8820-d8bd2e82eaf3"
+	},
+	"type": "DATABASE"
+}

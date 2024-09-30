@@ -1,0 +1,591 @@
+{
+	"name": "SparkTransformation",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "Smallpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "453083ad-1c87-4a06-8e51-c01597a71e9f"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1",
+				"state": {
+					"5f383eb6-db84-40bf-8c1f-91480e72ee2d": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "0",
+										"1": "2021",
+										"2": "Jan",
+										"3": "CA",
+										"4": "100000",
+										"5": "90000",
+										"6": "10000",
+										"7": "0.1",
+										"8": "Tech",
+										"9": "Male",
+										"10": "Bachelor's degree",
+										"11": "1/1/2021",
+										"12": "Web",
+										"13": "V2.3",
+										"14": "Public",
+										"15": "Monthly",
+										"16": "Country",
+										"17": "Highly Random"
+									},
+									{
+										"0": "1",
+										"1": "2021",
+										"2": "Jan",
+										"3": "CA",
+										"4": "150000",
+										"5": "135000",
+										"6": "15000",
+										"7": "0.1",
+										"8": "Retail",
+										"9": "Female",
+										"10": "High school diploma",
+										"11": "1/1/2021",
+										"12": "Web",
+										"13": "V2.3",
+										"14": "Public",
+										"15": "Monthly",
+										"16": "Country",
+										"17": "Highly Random"
+									},
+									{
+										"0": "2",
+										"1": "2021",
+										"2": "Jan",
+										"3": "NY",
+										"4": "120000",
+										"5": "108000",
+										"6": "12000",
+										"7": "0.1",
+										"8": "Manufacturing",
+										"9": "Male",
+										"10": "Associate's degree",
+										"11": "1/1/2021",
+										"12": "Web",
+										"13": "V2.3",
+										"14": "Public",
+										"15": "Monthly",
+										"16": "Country",
+										"17": "Highly Random"
+									},
+									{
+										"0": "3",
+										"1": "2021",
+										"2": "Jan",
+										"3": "NY",
+										"4": "85000",
+										"5": "76500",
+										"6": "8500",
+										"7": "0.1",
+										"8": "Finance",
+										"9": "Female",
+										"10": "High school diploma",
+										"11": "1/1/2021",
+										"12": "Web",
+										"13": "V2.3",
+										"14": "Public",
+										"15": "Monthly",
+										"16": "Country",
+										"17": "Highly Random"
+									},
+									{
+										"0": "4",
+										"1": "2021",
+										"2": "Feb",
+										"3": "NY",
+										"4": "120000",
+										"5": "110000",
+										"6": "10000",
+										"7": "0.083333333",
+										"8": "Finance",
+										"9": "Male",
+										"10": "Master's degree",
+										"11": "2/1/2021",
+										"12": "Web",
+										"13": "V2.3",
+										"14": "Public",
+										"15": "Monthly",
+										"16": "Country",
+										"17": "Highly Random"
+									},
+									{
+										"0": "5",
+										"1": "2021",
+										"2": "Feb",
+										"3": "NY",
+										"4": "80000",
+										"5": "72000",
+										"6": "8000",
+										"7": "0.1",
+										"8": "Healthcare",
+										"9": "Female",
+										"10": "Associate's degree",
+										"11": "2/1/2021",
+										"12": "Web",
+										"13": "V2.3",
+										"14": "Public",
+										"15": "Monthly",
+										"16": "Country",
+										"17": "Highly Random"
+									},
+									{
+										"0": "6",
+										"1": "2021",
+										"2": "Feb",
+										"3": "CA",
+										"4": "180000",
+										"5": "162000",
+										"6": "18000",
+										"7": "0.1",
+										"8": "Energy",
+										"9": "Male",
+										"10": "Bachelor's degree",
+										"11": "2/1/2021",
+										"12": "Web",
+										"13": "V2.3",
+										"14": "Public",
+										"15": "Monthly",
+										"16": "Country",
+										"17": "Highly Random"
+									},
+									{
+										"0": "7",
+										"1": "2021",
+										"2": "Feb",
+										"3": "CA",
+										"4": "95000",
+										"5": "85500",
+										"6": "9500",
+										"7": "0.1",
+										"8": "Retail",
+										"9": "Female",
+										"10": "High school diploma",
+										"11": "2/1/2021",
+										"12": "Web",
+										"13": "V2.3",
+										"14": "Public",
+										"15": "Monthly",
+										"16": "Country",
+										"17": "Highly Random"
+									},
+									{
+										"0": "8",
+										"1": "2021",
+										"2": "Mar",
+										"3": "CA",
+										"4": "180000",
+										"5": "162000",
+										"6": "18000",
+										"7": "0.1",
+										"8": "Energy",
+										"9": "Male",
+										"10": "Bachelor's degree",
+										"11": "3/1/2021",
+										"12": "Web",
+										"13": "V2.3",
+										"14": "Public",
+										"15": "Monthly",
+										"16": "Country",
+										"17": "Highly Random"
+									},
+									{
+										"0": "9",
+										"1": "2021",
+										"2": "Mar",
+										"3": "CA",
+										"4": "90000",
+										"5": "81000",
+										"6": "9000",
+										"7": "0.1",
+										"8": "Education",
+										"9": "Female",
+										"10": "High school diploma",
+										"11": "3/1/2021",
+										"12": "Web",
+										"13": "V2.3",
+										"14": "Public",
+										"15": "Monthly",
+										"16": "Country",
+										"17": "Highly Random"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "Line Number",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "Year",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "Month",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "State",
+										"type": "string"
+									},
+									{
+										"key": "4",
+										"name": "Labor Force",
+										"type": "string"
+									},
+									{
+										"key": "5",
+										"name": "Employed",
+										"type": "string"
+									},
+									{
+										"key": "6",
+										"name": "Unemployed",
+										"type": "string"
+									},
+									{
+										"key": "7",
+										"name": "Unemployment Rate",
+										"type": "string"
+									},
+									{
+										"key": "8",
+										"name": "Industry",
+										"type": "string"
+									},
+									{
+										"key": "9",
+										"name": "Gender",
+										"type": "string"
+									},
+									{
+										"key": "10",
+										"name": "Education Level",
+										"type": "string"
+									},
+									{
+										"key": "11",
+										"name": "Date Inserted",
+										"type": "string"
+									},
+									{
+										"key": "12",
+										"name": "InsertSource",
+										"type": "string"
+									},
+									{
+										"key": "13",
+										"name": "Data Version",
+										"type": "string"
+									},
+									{
+										"key": "14",
+										"name": "Access Permission",
+										"type": "string"
+									},
+									{
+										"key": "15",
+										"name": "Update Frequency",
+										"type": "string"
+									},
+									{
+										"key": "16",
+										"name": "Aggregation Level",
+										"type": "string"
+									},
+									{
+										"key": "17",
+										"name": "Data Accuracy",
+										"type": "string"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					}
+				}
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/9b246bb1-656e-4f5b-b6af-fe829e241c61/resourceGroups/Synapse-project/providers/Microsoft.Synapse/workspaces/1109projectsynapse/bigDataPools/Smallpool",
+				"name": "Smallpool",
+				"type": "Spark",
+				"endpoint": "https://1109projectsynapse.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Smallpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.4",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"sc"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "python"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"df = spark.read.load('abfss://raw@1109projectsynapse.dfs.core.windows.net/Unemployment.csv', format='csv'\r\n",
+					"## If header exists uncomment line below\r\n",
+					", header=True\r\n",
+					")\r\n",
+					"display(df.limit(10))"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"print(df.count())\r\n",
+					"df_nodups = df.drop_duplicates()\r\n",
+					"print(df_nodups.count())"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_all = df_nodups.dropna(how='all')\r\n",
+					"print(df_all.count())"
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from pyspark.sql.functions import col\r\n",
+					"for clmn in df_all.columns:\r\n",
+					"    nullcount = df_all.filter(col(clmn).isNull()).count() \r\n",
+					"    if(nullcount>0):\r\n",
+					"        print('Null count is ' + clmn +str (nullcount))"
+				],
+				"execution_count": 7
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_clean = df_all.fillna('unknown')\r\n",
+					"for clmn in df_clean.columns:\r\n",
+					"    nullcount = df_clean.filter(col(clmn).isNull()).count() \r\n",
+					"    if(nullcount>0):\r\n",
+					"        print('Null count is ' + clmn +str (nullcount))"
+				],
+				"execution_count": 8
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"for clmn in df_clean.columns:\r\n",
+					"    nullcount = df_clean.filter(col(clmn) == 'unknown').count() \r\n",
+					"    if(nullcount>0):\r\n",
+					"        print('unknown count is ' + clmn +str (nullcount))"
+				],
+				"execution_count": 9
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_clean.write.format('parquet').mode('overwrite').save('abfss://refined@1109projectsynapse.dfs.core.windows.net/NoNulls/')"
+				],
+				"execution_count": 10
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df.printSchema()"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from pyspark.sql.functions import col\r\n",
+					"df_nafilled = df.fillna('unknown', subset='Data Accuracy')\r\n",
+					"print(f\"Count of rows with unknown value {df_nafilled.filter(col('Data Accuracy')=='unknown').count()}\")"
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"print(df.columns)\r\n",
+					"print(df.schema.names)"
+				],
+				"execution_count": 5
+			}
+		]
+	}
+}

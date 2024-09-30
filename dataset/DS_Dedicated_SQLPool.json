@@ -1,0 +1,17 @@
+{
+	"name": "DS_Dedicated_SQLPool",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Tablecopied"
+		},
+		"sqlPool": {
+			"referenceName": "Deducated",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

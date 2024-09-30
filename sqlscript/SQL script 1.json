@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "CREATE TABLE dbo.SQLPool_Table2\n\t(\n\t [Education_Level] varchar(4000),\n\t [Line_Number] int,\n\t [Year] int,\n\t [Month] nvarchar(4000),\n\t [State] nvarchar(4000),\n\t [Labor_Force] int,\n\t [Employed] int,\n\t [Unemployed] int,\n\t [Industry] varchar(4000),\n\t [Gender] varchar(4000),\n\t [Date_Inserted] date,\n\t [Min_Salary_USD] int,\n\t [Max_Salary_USD] int,\n     [UnEmployed_Rate_Percentage] real,\n\t [dense_rank] int\n\t)\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN,\n\n    CLUSTERED COLUMNSTORE INDEX\n)\n\nCOPY INTO dbo.SQLPool_Table2\n(Education_Level 1, Line_Number 2, Year 3, Month 4, State 5, Labor_Force 6, Employed 7, Unemployed 8, Industry 9, Gender 10, Date_Inserted 11,  Min_Salary_USD 12, Max_Salary_USD 13, UnEmployed_Rate_Percentage 14,  dense_rank 15)\nFROM 'https://1109projectsynapse.dfs.core.windows.net/processed/processed/part-00000-0d0622af-b9ea-4481-a7c6-0c79f6f78cd9-c000.snappy.parquet'\nWITH\n(\n    FILE_TYPE = 'PARQUET'\n)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "Deducated",
+				"poolName": "Deducated"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

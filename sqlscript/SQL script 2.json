@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "-- This is auto-generated code\nSELECT\n    TOP 10 *\nFROM\n    OPENROWSET(\n        BULK 'https://1109projectsynapse.dfs.core.windows.net/processed/processed/part-00000-0d0622af-b9ea-4481-a7c6-0c79f6f78cd9-c000.snappy.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result]\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

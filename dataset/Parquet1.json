@@ -1,0 +1,82 @@
+{
+	"name": "Parquet1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "1109projectsynapse-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "processed",
+				"fileSystem": "processed"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Education_Level",
+				"type": "UTF8"
+			},
+			{
+				"name": "Line_Number",
+				"type": "INT32"
+			},
+			{
+				"name": "Year",
+				"type": "INT32"
+			},
+			{
+				"name": "Month",
+				"type": "UTF8"
+			},
+			{
+				"name": "State",
+				"type": "UTF8"
+			},
+			{
+				"name": "Labor_Force",
+				"type": "INT32"
+			},
+			{
+				"name": "Employed",
+				"type": "INT32"
+			},
+			{
+				"name": "Unemployed",
+				"type": "INT32"
+			},
+			{
+				"name": "Industry",
+				"type": "UTF8"
+			},
+			{
+				"name": "Gender",
+				"type": "UTF8"
+			},
+			{
+				"name": "Date_Inserted",
+				"type": "DATE"
+			},
+			{
+				"name": "Min_Salary_USD",
+				"type": "INT32"
+			},
+			{
+				"name": "Max_Salary_USD",
+				"type": "INT32"
+			},
+			{
+				"name": "UnEmployed_Rate_Percentage",
+				"type": "FLOAT"
+			},
+			{
+				"name": "dense_rank",
+				"type": "INT32"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

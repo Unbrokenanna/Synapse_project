@@ -1,0 +1,25 @@
+{
+	"name": "Trigger 1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Pipeline_add_notebook",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 1,
+				"startTime": "2024-09-23T09:52:00",
+				"endTime": "2024-09-23T15:52:00",
+				"timeZone": "GMT Standard Time"
+			}
+		}
+	}
+}

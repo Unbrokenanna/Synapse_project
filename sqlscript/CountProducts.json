@@ -1,0 +1,17 @@
+{
+	"name": "CountProducts",
+	"properties": {
+		"content": {
+			"query": "-- This is auto-generated code\nSELECT\n    Category, COUNT(*) as ProductCount\nFROM\n    OPENROWSET(\n        BULK 'https://1109projectsynapse.dfs.core.windows.net/files/product_data/product.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0',\n        HEADER_ROW = TRUE\n    ) AS [result]\nGROUP BY Category\nORDER BY ProductCount;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

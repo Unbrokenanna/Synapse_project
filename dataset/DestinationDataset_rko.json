@@ -1,0 +1,26 @@
+{
+	"name": "DestinationDataset_rko",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "1109projectsynapse-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "product.csv",
+				"folderPath": "product_data",
+				"fileSystem": "files"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

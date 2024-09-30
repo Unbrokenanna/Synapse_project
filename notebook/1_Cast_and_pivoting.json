@@ -1,0 +1,694 @@
+{
+	"name": "1_Cast_and_pivoting",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "Smallpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "af7ce179-ac9f-4fd9-b0ed-9e88a5d7e089"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/9b246bb1-656e-4f5b-b6af-fe829e241c61/resourceGroups/Synapse-project/providers/Microsoft.Synapse/workspaces/1109projectsynapse/bigDataPools/Smallpool",
+				"name": "Smallpool",
+				"type": "Spark",
+				"endpoint": "https://1109projectsynapse.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Smallpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.4",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"mssparkutils.notebook.run('Mount configuration')"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"## - Accessing the Files from Mountpoint \r\n",
+					"## Syntax:\r\n",
+					"# synfs:/<jobid>/<mountpoint>/<path>\r\n",
+					"# To get JobID - mssparkutils.env.getJobId()\r\n",
+					"\r\n",
+					"\r\n",
+					"job_id = mssparkutils.env.getJobId()\r\n",
+					"\r\n",
+					"mount_point = 'synfs:/notebook/' + job_id + '/lake'"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"## Read the dataframe\r\n",
+					"\r\n",
+					"df_window = spark.read.format('parquet')\\\r\n",
+					"                .load(mount_point+'/WindowFunctions/*.parquet')"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_window.printSchema()"
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_window = df_window.drop('Aggregation_Level','Data_Accuracy')"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_window.select('Date_Inserted').show(5)"
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from pyspark.sql import functions as F\r\n",
+					"df_window.withColumn('Date_Inserted2', F.to_date(F.col('Date_Inserted'), 'M/d/y')).select('Date_Inserted', 'Date_Inserted2').show(5)"
+				],
+				"execution_count": 9
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_final = df_window.withColumn('Date_Inserted', F.to_date(F.col('Date_Inserted'), 'M/d/y'))\r\n",
+					"df_final.printSchema()"
+				],
+				"execution_count": 11
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"print(len(df_final.columns))"
+				],
+				"execution_count": 17
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_final = df_final.drop('Unemployment_Rate', 'Data_Accuracy', 'Access_Permission', 'Update_Frequency', 'Aggregation_Level', 'InsertSource', 'Data_Version')"
+				],
+				"execution_count": 16
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Importing the functions \r\n",
+					"\r\n",
+					"from pyspark.sql.types import StructType,StructField,StringType,IntegerType,FloatType,DateType\r\n",
+					"\r\n",
+					"schema = StructType([\r\n",
+					"    StructField('Education_Level',StringType()),\r\n",
+					"    StructField('Line_Number',IntegerType()),\r\n",
+					"    StructField('Year',IntegerType()),\r\n",
+					"    StructField('Month',StringType()),\r\n",
+					"    StructField('State',StringType()),\r\n",
+					"    StructField('Labor_Force',IntegerType()),\r\n",
+					"    StructField('Employed',IntegerType()),\r\n",
+					"    StructField('Unemployed',IntegerType()),\r\n",
+					"    StructField('Industry',StringType()),\r\n",
+					"    StructField('Gender',StringType()),\r\n",
+					"    StructField('Date_Inserted',DateType()),\r\n",
+					"    StructField('Min_Salary_USD',IntegerType()),\r\n",
+					"    StructField('Max_Salary_USD',IntegerType()),\r\n",
+					"    StructField('UnEmployed_Rate_Percentage',FloatType()),\r\n",
+					"    StructField('dense_rank',IntegerType())\r\n",
+					"])"
+				],
+				"execution_count": 38
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_final.printSchema()  "
+				],
+				"execution_count": 19
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"cast_columns = ['Line_Number', 'Year', 'Labor_Force', 'Employed', 'Unemployed']\r\n",
+					"for c in cast_columns:\r\n",
+					"    df_final = df_final.withColumn(c, F.col(c).cast(IntegerType()))\r\n",
+					"\r\n",
+					"df_final = df_final.withColumn('UnEmployed_Rate_Percentage', F.col('UnEmployed_Rate_Percentage').cast(FloatType()))\r\n",
+					"\r\n",
+					"df_final.printSchema()"
+				],
+				"execution_count": 27
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_new = spark.createDataFrame(df_final.rdd,schema)\r\n",
+					"df_new.show(1, vertical=True)\r\n",
+					"# display(df_new)"
+				],
+				"execution_count": 40
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_new.write.format('parquet')\\\r\n",
+					"        .mode('overwrite')\\\r\n",
+					"        .save('abfss://processed@1109projectsynapse.dfs.core.windows.net/processed/')"
+				],
+				"execution_count": 41
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"#1 - importing col function \r\n",
+					"\r\n",
+					"from pyspark.sql.functions import col\r\n",
+					"\r\n",
+					"df.filter(col('Unemployed')== 2000).show(n=4)"
+				],
+				"execution_count": 7
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"#2 - Importing entire function module as using alias as F \r\n",
+					"\r\n",
+					"from pyspark.sql import functions as F\r\n",
+					"\r\n",
+					"df.filter(F.col('Unemployed')== 2000).show()"
+				],
+				"execution_count": 10
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Conversions"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df.printSchema()"
+				],
+				"execution_count": 11
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df.select(['Education_level','Industry','Unemployed']).describe().show()"
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from pyspark.sql import functions as F\r\n",
+					"\r\n",
+					"df_Casted = df.withColumn('Unemployed',F.col('Unemployed').cast('float'))"
+				],
+				"execution_count": 6
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_Casted.printSchema()"
+				],
+				"execution_count": 15
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Pivoting"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from pyspark.sql import functions as F\r\n",
+					"\r\n",
+					"df_Casted.groupBy('Industry').pivot('Education_Level').agg(F.sum('Unemployed')).show()"
+				],
+				"execution_count": 7
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Assignment to do \r\n",
+					"\r\n",
+					"# Try pivoting using Total \"Max Salary USD \" by gender grouped by education level\r\n",
+					"\r\n",
+					"df_Casted.groupBy('Education_Level').pivot('Gender').agg(F.sum('Max_Salary_USD')).show()"
+				],
+				"execution_count": 8
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df_pivoted = df_Casted.groupBy('Education_Level').pivot('Gender').agg(F.sum('Max_Salary_USD'))"
+				],
+				"execution_count": 9
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Unpivoting\r\n",
+					"\r\n",
+					"df_unpivo = df_pivoted.selectExpr(\"Education_Level\", \"stack(2,'_Male',Male,'_Female',Female ) as (Gender,Max_Salary_USD)\")"
+				],
+				"execution_count": 22
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"display(df_unpivo)"
+				],
+				"execution_count": 23
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				]
+			}
+		]
+	}
+}
